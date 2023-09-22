@@ -1,0 +1,40 @@
+<div id="bigcontainer">
+  <div id="smallcontainer1">
+
+
+
+    <ngb-carousel [interval]="5000" *ngIf="images && !mobile" class="now_playing_carousel" >  
+        <ng-template ngbSlide *ngFor="let title of titles; let i=index" >
+
+          <div class="picsum-img-wrapper np_custom-card" id="imag_cont" >  
+            <a [routerLink]="['/watch/movie', ids[i]]">                             
+              <img [src]="images[i]" alt="Random first slide" >    
+              <div class="overlay">
+                <div class="carousel-caption"><h6>{{title}}</h6></div>
+              </div>  
+            </a>       
+          </div>
+        </ng-template>
+    </ngb-carousel>
+    
+  </div>  
+  <div id="smallcontainer2">
+
+
+    <ngb-carousel [interval]="5000" *ngIf="images && mobile" class="now_playing_carousel_mobile">  
+      <ng-template ngbSlide *ngFor="let title of titles; let i=index" >
+
+        <div class="picsum-img-wrapper np_custom-card" id="imag_cont">    
+          <a [routerLink]="['/watch/movie', ids[i]]">                                             
+            <img [src]="images[i]" alt="Random first slide">    
+            <div class="overlay"style="opacity: 1;">
+              <div class="carousel-caption" id="capformobile">{{title}}</div>
+            </div>       
+          </a>  
+        </div>
+      </ng-template>
+  </ngb-carousel>
+
+</div>
+
+

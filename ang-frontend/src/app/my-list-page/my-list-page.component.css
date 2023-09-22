@@ -1,0 +1,48 @@
+
+.listcontainer{
+    margin: auto;
+
+}
+
+#listinner{
+    
+    align-items: center;
+    justify-content: center;
+}
+
+.ml_custom-card{ 
+    cursor: pointer;
+    border: none;
+    transition: transform 0.2s ease;
+    background-color: rgba(0,0,0,0);
+}
+.ml_custom-card:hover {
+    transform: scale(1.1);
+    background-color: black;
+}
+
+.ml_custom-card:hover .overlay {
+    opacity: 1;
+  }
+ 
+.carousel-caption {
+    left: 5%;
+    text-align: left;
+    right: auto;
+    padding:5px;
+    font-size: 15px;
+    padding-bottom: 0px;;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-image: linear-gradient(to top, rgba(0,0,0,1) 10% , rgba(0,0,0,0));
+}

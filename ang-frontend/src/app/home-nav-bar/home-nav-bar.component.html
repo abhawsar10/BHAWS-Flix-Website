@@ -1,0 +1,64 @@
+
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark mb-3 navbar-custom pl-5 pr-5" [ngStyle]="{'padding-right': (mobile)? '54px':'0px' }">
+    
+    <a class="navbar-brand" id="nav0" [routerLink]="'.'">Bhaws Nitink Films</a>
+
+    <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
+        &#9776;
+    </button>
+
+
+    <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse" >
+        <ul class="navbar-nav col-lg-9">
+            <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+                <a class="nav-link" id="nav1" [routerLink]="'/'" (click)="isMenuCollapsed = true;">Home</a>
+            </li>
+            <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+                <a class="nav-link" id="nav2" [routerLink]="'/mylist'" (click)="isMenuCollapsed = true;">My List</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav col-lg-3"  id="goright" [ngStyle]=" mobile ? {'direction':'ltr', 'width':'100%' }:{'direction':'rtl', 'width':'80%' }">                  
+            <div id= "goright1">
+                <form class="form-inline mr-0">
+
+                    <div class="md-form my-0 form-group" style="width: 100%;">
+                        
+                        <input 
+                            #input
+                            name="searchbar"
+                            id="home-search" 
+                            type="text" 
+                            class="form-control mx" 
+                            [(ngModel)]="model" 
+                            [ngbTypeahead]="search" 
+                            placeholder="Search" 
+                            [resultTemplate]="rt"
+                            [inputFormatter]="formatter" 
+                            (selectItem)="onSelect($event, input)"
+                        />
+
+                        <ng-template #rt let-r="result" let-t="term" >
+                                <a [routerLink]="['/watch/',r.media_type, r.id]" style="
+                                display: block;
+                                text-overflow: ellipsis;
+                                overflow: hidden;"
+                                >
+                                    <img [src]=" r['backdrop_path']" class="mr-3 " style="width: 75px">
+                                    <ngb-highlight [result]="r.title" [term]="t"></ngb-highlight>
+                                </a>
+                             
+                        </ng-template>
+
+
+
+
+                    </div>
+
+                </form>
+            </div>
+        </ul>
+    </div>
+
+
+
+</nav>

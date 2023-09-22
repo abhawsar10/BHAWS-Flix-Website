@@ -1,0 +1,91 @@
+<div id="bigcontainer{{data_recd}}" class="bigcontainer" >
+
+
+    <!-- Desktop Version-->
+
+    <h1 id="carouselname1" *ngIf="!mobile" >{{carousel_title}}</h1>
+
+    <ngb-carousel *ngIf="!mobile" class="nofocus nofocus{{data_recd}}"  >
+        <ng-template ngbSlide *ngFor="let group of imagesFormatted; let i=index" >
+            <div class="row flex-nowrap justify-content-center">
+
+                <div class="card sm-2 custom-card"  >                    
+                    <a [routerLink]="['/watch',media_type, idFormatted[i][0]]"   *ngIf="group[0]" >
+                        <img class="flexit" src="{{group[0]}}" style="height:100%; width:100%" onerror="this.onerror=null; this.src='https://cinemaone.net/images/movie_placeholder.png';">   
+                        <div class="overlay">
+                            <div class="carousel-caption">{{titlesFormatted[i][0]}}</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="card sm-2 custom-card"   >                  
+                    <a [routerLink]="['/watch',media_type, idFormatted[i][1]]"  *ngIf="group[1]" >
+                        <img class="flexit" src="{{group[1]}}" style="height:100%; width:100%" onerror="this.onerror=null; this.src='https://cinemaone.net/images/movie_placeholder.png';">
+                        <div class="overlay">
+                            <div class="carousel-caption">{{titlesFormatted[i][1]}}</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="card sm-2 custom-card"   >                    
+                    <a [routerLink]="['/watch',media_type, idFormatted[i][2]]"  *ngIf="group[2]" >
+                        <img class="flexit" src="{{group[2]}}" style="height:100%; width:100%" onerror="this.onerror=null; this.src='https://cinemaone.net/images/movie_placeholder.png';">
+                        <div class="overlay">
+                            <div class="carousel-caption">{{titlesFormatted[i][2]}}</div>
+                        </div>
+                    </a>
+                </div> 
+                <div class="card sm-2 custom-card"   >                  
+                    <a [routerLink]="['/watch',media_type, idFormatted[i][3]]"  *ngIf="group[3]" >
+                        <img class="flexit" src="{{group[3]}}" style="height:100%; width:100%" onerror="this.onerror=null; this.src='https://cinemaone.net/images/movie_placeholder.png';">
+                        <div class="overlay">
+                            <div class="carousel-caption">{{titlesFormatted[i][3]}}</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="card sm-2 custom-card"   >                   
+                    <a [routerLink]="['/watch',media_type, idFormatted[i][4]]"  *ngIf="group[4]" >
+                        <img class="flexit" src="{{group[4]}}" style="height:100%; width:100%" onerror="this.onerror=null; this.src='https://cinemaone.net/images/movie_placeholder.png';">
+                        <div class="overlay">
+                            <div class="carousel-caption">{{titlesFormatted[i][4]}}</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="card sm-2 custom-card"   >                     
+                    <a [routerLink]="['/watch',media_type, idFormatted[i][5]]"  *ngIf="group[5]" >
+                        <img class="flexit" src="{{group[5]}}" style="height:100%; width:100%" onerror="this.onerror=null; this.src='https://cinemaone.net/images/movie_placeholder.png';">
+                        <div class="overlay">
+                            <div class="carousel-caption">{{titlesFormatted[i][5]}}</div>
+                        </div>
+                    </a>
+                </div>
+                
+
+            </div>
+        </ng-template>
+    </ngb-carousel>
+
+
+    <!-- Mobile Version-->
+
+    <h2 id="carouselname2" *ngIf="mobile">{{carousel_title}}</h2>
+
+    <ngb-carousel *ngIf="mobile" class="nofocusmobile nofocusmobile{{data_recd}}" >  
+        <ng-template ngbSlide *ngFor="let image of images; let i=index">
+            <div class="row flex-nowrap justify-content-center">
+                <div class=" card sm-2 custom-card1"  style="min-width:163px;max-width: 60vw;" >
+                    <a [routerLink]="['/watch',media_type, id[i]]">
+                        <img class="imgfit" src="{{image}}" style="height:100%; width:100%"  onerror="this.onerror=null; this.src='https://cinemaone.net/images/movie_placeholder.png';">
+                        <div class="overlay" style="opacity: 1;">
+                            <div class="carousel-caption">{{titles[i]}}</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </ng-template>
+    </ngb-carousel>
+
+
+
+
+
+</div>
+    

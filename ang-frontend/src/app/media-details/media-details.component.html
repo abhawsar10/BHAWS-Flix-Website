@@ -1,0 +1,194 @@
+
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v10.0" nonce="qGLoMNY3"></script>
+
+<div id="bigdetailscontainer">
+
+    <div class="row details_face" [ngStyle]="{'width': (mobile)? '85vw':'72%' }">
+
+
+        <div id="yt_video" class="pr-0 pl-0 col-lg-8" >
+            <youtube-player videoId={{video_id}} class="embed-responsive embed-responsive-16by9"></youtube-player>                
+        </div>
+        <div id="details_right" class=" col-lg-4" [ngStyle]="{'padding-left': (mobile)? '0':'20px' }">
+            <div id="details_title">{{title}}</div>
+            <div id="details_tagline"><i>{{tagline}}</i></div>
+            <div id="details_dateline">{{dateline}}</div>
+            <div id="details_genreline">Genres: <span style="color:rgb(188,193,200);">{{genreline}}</span> </div>
+            <div id="details_langline">Spoken Languages: <span style="color:rgb(188,193,200);">{{langline}}</span></div>
+            <div id="details_button">
+                <button type="button" *ngIf="!is_on_watchlist" class="btn btn-primary" (click)="add_to_watchlist()">
+                    Add to Watchlist
+                </button>
+                <button type="button" *ngIf="is_on_watchlist" class="btn btn-primary" (click)="remove_from_watchlist()">
+                    Remove from Watchlist
+                </button>                  
+            </div>
+            
+            <ngb-alert #selfClosingAlert1 *ngIf="successMessage1" type="success" (closed)="successMessage1 = ''" >
+                {{ successMessage1 }}
+            </ngb-alert>  
+            
+        </div>
+        
+        <div id="details_description" class="col-sm-12" [ngStyle]=" mobile ? {'padding-left':'0', 'padding-right':'0' }:{'padding-left':'20px', 'padding-right':'20px' }">
+            <div style="font-size:25px;">Description</div>
+            <div style="color:rgb(188,193,200);">{{descline}}</div>
+        </div>
+        
+        <div id="details_share" class="col-sm-12" [ngStyle]=" mobile ? {'padding-left':'0', 'padding-right':'0' }:{'padding-left':'20px', 'padding-right':'20px' }">
+            <div style="font-size:25px;">Share</div>
+            <a class="twitter-share-button"  
+            href="https://twitter.com/intent/tweet?text=Watch%20{{encoded_title}}%0Ahttps://www.youtube.com/watch?v={{video_id}}%0A%23USC%20%23CSCI571%20%23FightOn" 
+            target="_blank">
+                <i class="fab fa-twitter fa-2x"></i>
+            </a>
+            <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{fb_video_id}}&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+                <i class="fab fa-facebook-square fa-2x"></i>
+            </a>
+        </div>
+
+    </div>
+
+    <div [ngClass] = " mobile ? 'noscrollbar' : 'scrollbar' " >
+        <div id="details_cast" class=" col-sm-12 details_cast" *ngIf="no_cast!=0" 
+            [ngStyle]=" mobile ? {}:{
+                'width':'73%',
+                'margin':'auto',
+                'padding-top': '20px'
+            }" 
+            >
+
+            <h3 [ngStyle]="mobile? {'padding-left': '5%'}:{}">Full Cast and Crew</h3>
+            <div id="details_cast_inner" class="row flex-row flex-nowrap overflow-auto "> 
+                
+                <div [ngClass]=" mobile ? 'm-3':'m-2'"  class="card custom-cast-card"  *ngFor="let actor of cast" (click)="openLg(content,actor.id,actor.poster_path)">
+                    <img class="card-img-top custom-card-img" src="{{actor.poster_path}}"  alt="Cast" onerror="this.onerror=null;this.src='https://bytes.usc.edu/cs571/s21_JSwasm00/hw/HW6/imgs/person-placeholder.png';">
+                    <div class="card-body" style="padding: 1px;">
+                        <h6 class="card-title" style="padding-bottom: 1px;">
+                            <div class="charname" style="font-size: medium;">
+                                <b>{{actor.name}}</b>
+                            </div>
+                            <div style="padding: 3px;" *ngIf='actor.character'>
+                                <b>AS</b>
+                            </div>
+                            <div class="charname">
+                                {{actor.character}}
+                            </div>
+                        </h6>
+                    </div>
+                </div>
+
+                <div *ngIf="mobile" id="right-filler" class="card"></div>
+                
+            </div>
+        </div>
+    </div>
+        
+    <ng-template #content let-modal >
+    
+        
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{one_actor.name}}</h4>
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="row">
+                    <div id="cast_l" class="col-sm-3">
+                        <img class="card-img-top" src='{{one_actor.profile_path}}' alt="Cast" onerror="this.onerror=null; this.src='https://bytes.usc.edu/cs571/s21_JSwasm00/hw/HW6/imgs/person-placeholder.png';">                        
+                    </div>
+                    <div id="cast_r" class="col-sm-9">
+                        <div id="cast_deet">
+
+                            <div id="birth" >Birth: {{one_actor.birthday}}</div>
+                            <div id="birthplace" >Birthplace: {{one_actor.place_of_birth}}</div>
+                            <div id="gender" >Gender: {{one_actor.gender}}</div>
+                            <div id="website" >Website: <a href={{one_actor.homepage}} target="_blank" style="color: blue;">{{one_actor.homepage}}</a></div>
+                            <div id="dept" >Known for: {{one_actor.known_for_department}}</div>
+                            <div id="aka" >Also Known as: {{one_actor.also_known_as}}</div>
+
+                        </div>
+                        <div id="cast_soc">
+
+                            <a href="{{one_actor_ext.imdb_id}}" target="_blank">
+                                <i *ngIf="one_actor_ext.imdb_id !=''" class="fab fa-imdb fa-2x" ngbPopover="Visit Imdb" triggers="mouseenter:mouseleave" ></i>
+                            </a>
+                            
+                            <a href="{{one_actor_ext.instagram_id}}" target="_blank">
+                                <i *ngIf="one_actor_ext.instagram_id !=''" class="fab fa-instagram fa-2x " ngbPopover="Visit Instagram" triggers="mouseenter:mouseleave"></i>
+                            </a>
+                            
+                            <a href="{{one_actor_ext.facebook_id}}" target="_blank">
+                                <i *ngIf="one_actor_ext.facebook_id !=''" class="fab fa-facebook-square fa-2x" ngbPopover="Visit Facebook" triggers="mouseenter:mouseleave"></i>
+                            </a>
+                            
+                            <a href="{{one_actor_ext.twitter_id}}" target="_blank">
+                                <i *ngIf="one_actor_ext.twitter_id !=''" class="fab fa-twitter fa-2x" ngbPopover="Visit Twitter" triggers="mouseenter:mouseleave"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div id="cast_bio">
+                        <h3>Biography</h3>
+                        {{one_actor.biography}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </ng-template>
+    
+
+
+
+    <div class="row details_face" [ngStyle]="{'width': (mobile)? '90vw':'76%' }">
+
+
+        <div id="details_review" class="col-sm-12" *ngIf="no_reviews != 0">
+            <h2>&nbsp;&nbsp;Reviews <span style="color:rgb(188,193,200);">{{no_reviews}}</span></h2>
+            <div class="row justify-content-center">
+                <div id="review1" class="row col-12 mt-2 mb-2 mr-1 ml-1" *ngFor="let rev of review">
+                    <div id="review_left" class="col-xl-3" style="min-width: 200px">
+                        <img src="{{rev.avatar_path}}" style="width:90px;height:90px;border-radius: 50%;" onerror="this.onerror=null;this.src='https://bytes.usc.edu/cs571/s21_JSwasm00/hw/HW8/ReviewsPlaceholderImage.jpg';">
+                    </div>
+                    <div id="review_right" class="col-xl-9" style="width:100%;padding-right:10%;">
+                        <div id="rr_1">
+                            <h4>A review created by {{rev.author}} <br *ngIf="mobile"><div id="oval_rating"><span id="star">&nbsp;★</span><span id="starno"> {{rev.rating}}&nbsp;</span></div></h4>
+                        </div> 
+                        
+                        <div id="rr_credits">
+                            Written by {{rev.author}} on {{rev.created_at | date: date_format : 'PDT'}}
+                        </div>
+                        <div id="rr">
+                            {{rev.content}}
+                        </div>
+                        <div id="rr_link">
+                            <a href="{{rev.url}}" target="_blank" style="color: blue;">
+                                <u>Read the rest</u>
+                            </a>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <div id="details_face2">
+    
+        <app-home-page-carousels  *ngIf="media_type=='movie'" carousel_title = "Recommended Movies" data_recd = "reco_movies" media_type="movie" media_id="{{media_id}}"></app-home-page-carousels>
+        <app-home-page-carousels  *ngIf="media_type=='movie'" carousel_title = "Similar Movies" data_recd = "sim_movies" media_type="movie" media_id="{{media_id}}"></app-home-page-carousels>
+        
+        <app-home-page-carousels  *ngIf="media_type=='tv'" carousel_title = "Recommended TV Shows" data_recd = "reco_tv" media_type="tv" media_id="{{media_id}}"></app-home-page-carousels>
+        <app-home-page-carousels  *ngIf="media_type=='tv'" carousel_title = "Similar TV Shows" data_recd = "sim_tv" media_type="tv" media_id="{{media_id}}"></app-home-page-carousels>
+        
+    </div>
+
+</div>
+
