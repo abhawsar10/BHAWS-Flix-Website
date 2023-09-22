@@ -17,4 +17,4 @@ To make changes to Angular frontend follow these steps:
 - Copy the newly updated 'dist' folder from 'angular-frontend' folder to 'node_backend' folder
 - Push changes to Github repo
 - Using Gcloud CLI, run command from node_backend folder: `gcloud app deploy`
-- App should be running at https://film-tv-website.ue.r.appspot.com/
+- App should be running at https://bhaws-flix.uw.r.appspot.com/
