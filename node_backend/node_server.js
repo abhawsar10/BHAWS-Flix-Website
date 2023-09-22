@@ -6,7 +6,7 @@ var endpoints = require('./routes/endpoints');
 var app = express();
 app.use(cors());
 
-app.use(express.static('../ang-frontend/dist/ang-frontend'));
+app.use(express.static('./dist/ang-frontend'));
 
 app.use('/apis/endpoints',endpoints);
 

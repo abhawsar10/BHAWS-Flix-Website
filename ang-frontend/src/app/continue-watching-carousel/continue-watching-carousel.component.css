@@ -3,6 +3,8 @@
     overflow: hidden;
     padding-top: 20px;
     padding-bottom: 50px;
+    
+    font-family: 'Roboto Condensed', sans-serif;
 }
 ngb-carousel{
     

@@ -1,7 +1,18 @@
-.navbar-custom { 
-    background-color: rgb(1,12,32);
+.navbar-custom {
+    background: linear-gradient(to right, rgb(1,12,32), rgb(14, 79, 202));
     padding-right: 54px;
-} 
+    border-bottom: 2px solid purple;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 20px;
+}
+
+#nav0 {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 30px;
+    color: yellow;
+
+}
+
 .nav-item{
     text-align: right;
 }
@@ -20,10 +31,9 @@
 
 #home-search,textarea  {
     background-color:  rgb(1,12,32);
-    border: none;
-    border-bottom: 2px solid white;
+    border: 2px solid white;
     width: 100%;
-    border-radius: 0px;
+    border-radius: 5px;
     outline: none;
 }
 
