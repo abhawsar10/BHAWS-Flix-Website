@@ -8,3 +8,13 @@ To run the project on your local, run the following commands:
 `npm install`
 
 `node node_server.js`
+
+To make changes to Angular frontend follow these steps:
+
+- Make changes in Angular folder to frontend
+- Preview changes using `ng serve`
+- Once acceptable, run `ng build`
+- Copy the newly updated 'dist' folder from 'angular-frontend' folder to 'node_backend' folder
+- Push changes to Github repo
+- Using Gcloud CLI, run command from node_backend folder: `gcloud app deploy`
+- App should be running at https://film-tv-website.ue.r.appspot.com/
