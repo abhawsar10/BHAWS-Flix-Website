@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! Q:\USC\Classes\CSCI 571 Web Tech\USC Films Website\ang-frontend\src\main.ts */"zUnb");
+module.exports = __webpack_require__(/*! Q:\USC\Classes\CSCI 571 Web Tech\BHAWS Flix Website\ang-frontend\src\main.ts */"zUnb");
 
 
 /***/ }),
